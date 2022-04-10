@@ -1,0 +1,21 @@
+<html>
+
+    <head></head>
+    <body>
+        <script >
+            function geoloc() {
+d=document.getElementById("demo");
+if (navigator.geolocation){
+   d.innerHTML="<p>Tu dispositivo soporta la geolocalización.</p>";
+   }
+else {
+   d.innerHTML="<p>Lo sentimos, tu dispositivo no admite la geolocaización.</p>";
+   }
+}
+            </script>
+            <div id="geo1">
+                <button onclick="geoloc()">Ver geolocalización.</button><br/>
+                <div id="demo"></div>
+              </div>
+    </body>
+</html>
