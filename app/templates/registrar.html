@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
-{%  block body %}
+{% block body %}
 <h1>Registrar nueva Propiedad</h1>
-<form>
-    Titulo:<input type="text" size="5" name="titulo" class="form-control">
-    Dirección:<input type="text" size="5" name="direccion" class="form-control">
+<form action="/nuevo" method="POST" enctype="multipart/form-data">
+    <label for="titulo">Titulo:</label><input type="text" size="5" name="titulo" class="form-control">
+    <label>Dirección:</label><input type="text" size="5" name="direccion" class="form-control">
     <br>
-    Documentación:<textarea name="documentos" rows="5" cols="50" class="form-control"></textarea><br>
-    Servicios:<textarea name="servicios" rows="5" cols="50" class="form-control"></textarea><br>
-    Medidas:<textarea name="medidas" rows="5" cols="50" class="form-control"></textarea><br>
-    Construcción:<textarea name="construccion" rows="5" cols="50" class="form-control"></textarea>
+    <label>Documentación:</label><textarea name="documentos" rows="5" cols="50" class="form-control"></textarea><br>
+    <label>Servicios:</label><textarea name="servicios" rows="5" cols="50" class="form-control"></textarea><br>
+    <label>Medidas:</label><textarea name="medidas" rows="5" cols="50" class="form-control"></textarea><br>
+    <label>Construcción:</label><textarea name="construccion" rows="5" cols="50" class="form-control"></textarea>
+    <label>Ubicación:</label> <textarea name="ubicacion" rows="5" class="form-control"></textarea><br>
+    <input type="submit" class="form-control">
+
 </form>
 {% endblock %}
