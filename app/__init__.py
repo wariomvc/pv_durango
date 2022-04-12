@@ -33,5 +33,8 @@ def create_app(test_config=None):
     @app.route('/miubicacion')
     def miubicacion():
         return render_template('miubicacion.html')  
-
+    
+    @app.route('/registrar')
+    def regitrar():
+        return render_template('registrar.html')
     return app

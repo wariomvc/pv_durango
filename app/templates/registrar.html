@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{%  block body %}
+<h1>Registrar nueva Propiedad</h1>
+<form>
+    Titulo:<input type="text" size="5" name="titulo" class="form-control">
+    Dirección:<input type="text" size="5" name="direccion" class="form-control">
+    <br>
+    Documentación:<textarea name="documentos" rows="5" cols="50" class="form-control"></textarea><br>
+    Servicios:<textarea name="servicios" rows="5" cols="50" class="form-control"></textarea><br>
+    Medidas:<textarea name="medidas" rows="5" cols="50" class="form-control"></textarea><br>
+    Construcción:<textarea name="construccion" rows="5" cols="50" class="form-control"></textarea>
+</form>
+{% endblock %}
