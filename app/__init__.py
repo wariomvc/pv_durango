@@ -1,7 +1,9 @@
+
 import os
 from pydoc import render_doc
+import re
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 def create_app(test_config=None):
@@ -13,6 +15,9 @@ def create_app(test_config=None):
     )
     from . import dbsql
     dbsql.init_app(app)
+
+    from . import admin
+    app.register_blueprint(admin.bp)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -36,11 +41,7 @@ def create_app(test_config=None):
     def miubicacion():
         return render_template('miubicacion.html')  
     
-    @app.route('/registrar')
-    def regitrar():
-        return render_template('registrar.html')
-    
-    
+  
     return app
 
     

@@ -1,16 +1,61 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1>Registrar nueva Propiedad</h1>
-<form action="/nuevo" method="POST" enctype="multipart/form-data">
-    <label for="titulo">Titulo:</label><input type="text" size="5" name="titulo" class="form-control">
-    <label>Dirección:</label><input type="text" size="5" name="direccion" class="form-control">
-    <br>
-    <label>Documentación:</label><textarea name="documentos" rows="5" cols="50" class="form-control"></textarea><br>
-    <label>Servicios:</label><textarea name="servicios" rows="5" cols="50" class="form-control"></textarea><br>
-    <label>Medidas:</label><textarea name="medidas" rows="5" cols="50" class="form-control"></textarea><br>
-    <label>Construcción:</label><textarea name="construccion" rows="5" cols="50" class="form-control"></textarea>
-    <label>Ubicación:</label> <textarea name="ubicacion" rows="5" class="form-control"></textarea><br>
-    <input type="submit" class="form-control">
+<div class="container-fluid ">
 
-</form>
+    <form action="{{ url_for('admin.nueva_propiedad') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+        <div class="row g-3">
+            <div class="col-2 ">
+                <label for="whq">WHQ:</label><input type="text" name="whq" class="form-control" placeholder="MEX0000">
+
+            </div>
+            <div class="col-3 ">
+                <label>Nombre:</label><input type="text" name="nombre" class="form-control"
+                    placeholder="Ej. Fco. Primo de Verdad">
+            </div>
+            <div class="col-3 ">
+                <label for="titulo">Titulo:</label><input type="text" name="titulo" class="form-control"
+                    placeholder="Ejemplo: Casa Habitación">
+
+            </div>
+            <div class="col-4 ">
+                <label>Dirección:</label><input type="text" name="direccion" class="form-control"
+                    placeholder="Dirección Fisica de la Propiedad">
+            </div>
+        </div>
+        <div class="row g-4" >
+            <div class="col-3 ">
+                <label>Documentación:</label><textarea name="documentos" class="form-control" rows="4"
+                    placeholder="Encada linea los documentos. Ejemplo:  Escritura ante Notario"></textarea>
+            </div>
+            <div class="col-3 ">
+                <label>Servicios:</label><textarea name="servicios" class="form-control" rows="4"
+                    placeholder="Escriba por linea, los servicios que cuenta la propiedad"></textarea>
+            </div>
+            <div class="col-3 ">
+                <label>Medidas:</label><textarea name="medidas" class="form-control" rows="4"
+                    placeholder="Escriba por Linea las medidas de distintar partes de la propiedad"></textarea>
+            </div>
+            <div class="col-3 ">
+                <label>Construcción:</label><textarea name="construccion" class="form-control" rows="4"
+                    placeholder="Escriba por linea los materiales de construcción"></textarea>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-4 ">
+
+                <label>Ubicación:</label><input name="latitud" class="form-control" placeholder="Latitud">
+                <input type="text" name="longitud" placeholder="longitud" class="form-control">
+            </div>
+            <div class="col-12  ">
+                <input type="submit" class="btn btn-primary">
+            </div>
+
+        </div>
+
+
+
+    </form>
+
+</div>
 {% endblock %}
