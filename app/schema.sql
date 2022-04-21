@@ -5,6 +5,7 @@ CREATE TABLE "propiedades" (
 	"whq"	TEXT NOT NULL,
 	"nombre"	TEXT NOT NULL,
 	"titulo"	TEXT NOT NULL,
+	"frase"	TEXT NOT NULL,
 	"direccion"	TEXT NOT NULL,
 	"documentos"	TEXT,
 	"servicios"	TEXT,

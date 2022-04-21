@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Lista de Propiedades</h1>
+<div class="container-fluid ">
+
+    <div class="row">
+        <div class="col-1 ">
+            <b>WHQ</b>
+        </div>
+        <div class="col-2 ">
+            <b>Nombre</b>
+        </div>
+        <div class="col-2 ">
+            <b>Titulo</b>
+        </div>
+        <div class="col-2 ">
+            <b>Dirección</b>
+        </div>
+        <div class="col-2 ">
+            <b>Galería</b>
+        </div>
+    </div>
+    {% for propiedad in propiedades %}
+    <div class="row">
+        <div class="col-1 ">
+            <a href="{{ url_for('showPropiedad', id=propiedad['id'])}}"> {{propiedad['whq']}}</a>
+        </div>
+        <div class="col-2 ">
+            {{propiedad['nombre']}}
+        </div>
+        <div class="col-2 ">
+            {{propiedad['titulo']}}
+        </div>
+        <div class="col-2 ">
+            {{propiedad['direccion']}}
+        </div>
+        <div class="col-2 ">
+            <a class="btn btn-success btn-sm " href="{{url_for('admin.galeria',id= propiedad['id'])}}" role="button">Agregar </a>
+        </div>
+    </div>
+    {% endfor %}
+<div class="container">
+    <a class="btn btn-primary btn-sm " href="/admin/registrar" role="button">Registrar Propiedad </a>
+</div>
+</div>
+{% endblock %}

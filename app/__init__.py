@@ -6,9 +6,12 @@ import re
 from flask import Flask, render_template, request
 
 
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    
+    app.config['UPLOAD_FOLDER'] = os.path.join(app.instance_path, '/static/galeria')
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -40,6 +43,14 @@ def create_app(test_config=None):
     @app.route('/miubicacion')
     def miubicacion():
         return render_template('miubicacion.html')  
+
+    @app.route('/<int:id>/show')
+    def showPropiedad(id):
+        db = dbsql.get_db()
+        print(str(id))
+        res = db.execute("SELECT * FROM propiedades WHERE id = ? ",(id,)).fetchone()
+        print(res['documentos'])
+        return render_template('propiedad.html', p=res)
     
   
     return app

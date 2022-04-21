@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Galería de MEX11232</h1>
+<div class="container-fluid ">
+
+  
+    <form action="{{url_for('admin.galeria', id=id)}}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{id}}">
+    <div class="row">
+        <div class="col-3 ">
+            <input type="file" name="file" id="filename" class="form-control form-control-sm"
+                placeholder="Agregar imagen">
+        </div>
+        <div class="col-3  ">
+            <input type="hidden" name="id_propiedad" value="{{id}}">
+            <input type="submit" | class="btn btn-primary btn-sm">
+        </div>
+            
+
+        </div>
+    </div>
+    </form>
+    {% for datos in datos_imagenes%}
+    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+        <div class="col-3 ">
+            <div class="card" style="width:18rem;">
+                <a href="{{ url_for('admin.addpic', id = id )}}">
+                    <img src="{{ url_for('static',filename='galeria/'+datos['URL'])}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{id}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted ">Nueva imagen</h6>
+                    <p class="card-text">Presione en l aimagen para agregar una nueva imagen a la galeria</p>
+                    
+                </div>
+            </div>        
+        </div>
+    </div>
+    
+    {% endfor %}
+</div>
+{% endblock %}
