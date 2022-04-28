@@ -20,12 +20,18 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 upload_folder = join(dirname(realpath(__file__)), "static\galeria")
 extensiones_permitidas = ['jpeg','jpg','png']
 
+def get_galeria_by_id(id_propiedad):
+    db = get_db()
+    imagenes_propiedad = db.execute('SELECT * FROM imagenes WHERE id_propiedad = ?',(id_propiedad,)).fetchall()   
+    
+    return imagenes_propiedad
 
 
 @bp.route('/')
 def registrar():
     db = get_db()
     propiedades = db.execute('SELECT id,whq, nombre, titulo, direccion FROM propiedades;').fetchall()
+    
     print(propiedades)
     return render_template('admin/index.html', propiedades=propiedades)
 
@@ -34,6 +40,7 @@ def check_extensiones(filename=''):
 
 @bp.route('/galeria/<id>',methods=('GET','POST'))
 def galeria(id):
+    imagenes_propiedad = get_galeria_by_id(id)
     if request.method == 'POST':
         id_propiedad = request.form['id_propiedad']
         file = request.files['file']
@@ -44,18 +51,15 @@ def galeria(id):
             db = get_db()
             db.execute("INSERT INTO imagenes (id_propiedad, URL) VALUES(?,?)",(id_propiedad,filename))
             db.commit() 
-            db.close()
+            
             print("Base de Datos Cerrada")
         else:
             flash("Tipo de Archivo no soportado")
-        return render_template('admin/galeria.html',id = id_propiedad)
+        return render_template('admin/galeria.html', id=id, datos_imagenes=imagenes_propiedad)
     if request.method == 'GET':
-        db = get_db()
-        datos_imagenes = db.execute('SELECT * FROM imagenes WHERE id_propiedad = ?',(id,)).fetchall()   
-        db.close()
-        print(datos_imagenes)
-        if datos_imagenes != None:
-            return render_template('admin/galeria.html', id=id, datos_imagenes=datos_imagenes)
+        #imagenes_propiedad = get_galeria_by_id(id)
+        if imagenes_propiedad != None:
+            return render_template('admin/galeria.html', id=id, datos_imagenes=imagenes_propiedad)
         else:
             return render_template('admin/galeria.html', id=id, datos_imagenes=[])
 

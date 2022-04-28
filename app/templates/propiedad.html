@@ -6,7 +6,7 @@
 {% block contenido%}
 
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center " style="background-image: url('img/mex6477_3.jpeg'); height: 500px; background-position: top;
+<div class="position-relative overflow-hidden text-center titulo" style="background-image: url('img/mex6477_3.jpeg'); height: 400px; background-position: top;
 background-repeat: no-repeat; background-size:auto;">
   <div class="col-md-5 p-lg-5 mx-auto my-5 bg-light" style="opacity: 90%;">
     <h1 class="display-4 fw-normal">{{p['titulo']}}</h1>
@@ -23,11 +23,12 @@ background-repeat: no-repeat; background-size:auto;">
 
   <h2 id="deta" class="pb-2 border-bottom">Detalles</h2>
 
-  <div class="row g-4 py-5 row-cols-1 row-cols-lg-4">
+  <div class="row g-4 py-5 row-cols-2">
     <div class="col  ">
       <div class="bg-gradient rounded-3 bg-light border border-1 border-dark" style="display:inline-flex; align-items: center;
             justify-content: center;  width:60px; height:60px">
-        <span style="font-size:50px;">&#128462;</span>
+        <span style="font-size:50px;">&#128221;
+        </span>
       </div>
       <h4>Documentación</h4>
       <ul>
@@ -104,17 +105,38 @@ box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0,
     <div class="col  ">
       <div class="bg-gradient rounded-3 bg-light border border-1 border-dark" style="display:inline-flex; align-items: center;
             justify-content: center;  width:55px; height:55px">
-        <span style="font-size:40px;">&#128205;        </span>
+        <span style="font-size:40px;">&#128205; </span>
       </div>
       <h4>Mapa de Ubicación</h4>
       <p><strong>Dirección </strong> {{p['direccion']}}</p>
-      <p class="border border-2 border-dark rounded-3">
+      <p><strong>Latitud: </strong>{{p['latitud']}} <strong>Longitud: </strong>{{p['longitud']}}</p>
+      <img class="mapa_estatico"
+      src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s-home+00F(-103.49838,25.56637)/-103.49838,25.56637,13/350x350?access_token=pk.eyJ1Ijoid2FyaW9tdmMiLCJhIjoiY2wyZXJ6NXdvMDA4YTNqbXdsOXJxNnloYiJ9.mjiy2sqN-nB0DIKp9LZpkQ"
+      alt="Mapa de la Propiedad">
+      <div class="contenedor_mapa">
+        <div id="mapa" class="mapa">
+          <strong>Puedes Alejar o Acercar el Mapa</strong> <div id="map"></div>
+        </div>
+      </div>
 
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d869.0988233693663!2d-103.50710600691393!3d25.571994855023917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x15f6211c9c1f24af!2zMjXCsDM0JzE5LjUiTiAxMDPCsDMwJzI1LjUiVw!5e0!3m2!1ses-419!2smx!4v1649881667519!5m2!1ses-419!2smx"
-          width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" class="w-100"></iframe>
-      </p>
+
+
+      <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoid2FyaW9tdmMiLCJhIjoiY2wyZXJ6NXdvMDA4YTNqbXdsOXJxNnloYiJ9.mjiy2sqN-nB0DIKp9LZpkQ';
+        const map = new mapboxgl.Map({
+          container: 'map', // container ID
+          style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
+          center: [-103.49838816095291, 25.56633784070425], // starting position [lng, lat]
+          zoom: 15.5 // starting zoom
+        });
+        let elemento = document.createElement('div');
+        elemento.className = 'pin'
+        let marcador = new mapboxgl.Marker(elemento)
+          .setLngLat({ lng: -103.49838816095291, lat: 25.56633784070425 })
+          .addTo(map);
+      </script>
     </div>
+    
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
         <a class="btn btn-sm btn-outline-dark" href="#titulo">Arriba</a>
@@ -132,36 +154,22 @@ box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0,
   <h2 id="galeria" class="pb-2 border-bottom">Galería</h2>
   <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-2">
 
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="img/mex6477_3.jpeg" height="auto" width="100%">
+    {% for datos in datos_imagenes%}
 
-        <div class="card-body"><strong>Exterior</strong>
-          <p class="card-text">Propiedad en Esquina.</p>
+    <div class="col">
+      <div class="card" style="width:18rem;">
+        <a href="{{ url_for('admin.addpic', id = id )}}">
+          <img src="{{ url_for('static',filename='galeria/'+datos['URL'])}}" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{id}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted ">Nueva imagen</h6>
+          <p class="card-text">Presione en l aimagen para agregar una nueva imagen a la galeria</p>
 
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="img/mex6477_1.jpeg" height="auto" width="100%">
-        <div class="card-body"><strong>Interior</strong>
-          <p class="card-text">Cuarto Amplio para adecuar para cocina o oficina</p>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="img/mex6477_2.jpeg" width="100%" height="auto">
-
-        <div class="card-body"><strong>Interior</strong>
-          <p class="card-text">El amplio salón de axa se puede adecuar a sus necesidades</p>
-
-        </div>
-      </div>
-    </div>
+    {% endfor %}
 
   </div>
   <div class="d-flex justify-content-between align-items-center">

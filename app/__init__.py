@@ -5,7 +5,7 @@ import re
 
 from flask import Flask, render_template, request
 
-
+from .dbsql import get_db
 
 def create_app(test_config=None):
     # create and configure the app
@@ -44,13 +44,21 @@ def create_app(test_config=None):
     def miubicacion():
         return render_template('miubicacion.html')  
 
+    def get_galeria_by_id(id_propiedad):
+        db = get_db()
+        imagenes_propiedad = db.execute('SELECT * FROM imagenes WHERE id_propiedad = ?',(id_propiedad,)).fetchall()   
+        
+        return imagenes_propiedad
+
+
     @app.route('/<int:id>/show')
     def showPropiedad(id):
         db = dbsql.get_db()
-        print(str(id))
+        #print(str(id))
         res = db.execute("SELECT * FROM propiedades WHERE id = ? ",(id,)).fetchone()
-        print(res['documentos'])
-        return render_template('propiedad.html', p=res)
+        imagenes_propiedad = get_galeria_by_id(id)
+        #print(res['documentos'])
+        return render_template('propiedad.html', p=res, datos_imagenes = imagenes_propiedad)
     
   
     return app

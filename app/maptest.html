@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display a map on a webpage</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
+<style>
+
+#map { position: relative; top: 0; bottom: 0; width: 600px; height: 300px; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoid2FyaW9tdmMiLCJhIjoiY2wyZXJ6NXdvMDA4YTNqbXdsOXJxNnloYiJ9.mjiy2sqN-nB0DIKp9LZpkQ';
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+style: 'mapbox://styles/mapbox/streets-v10', // style URL
+center: [ -104.113459,25.225108], // starting position [lng, lat]
+zoom: 16 // starting zoom
+});
+</script>
+ 
+</body>
+</html>
