@@ -1,38 +1,63 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>Galería de MEX11232</h1>
-<div class="container-fluid ">
+<h2>Galería de MEX11232</h2>
+<div class="container-fluid g-2 p-4 border border-1 my-2">
 
 
     <form action="{{url_for('admin.galeria', id=id)}}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{{id}}">
+        <div class="row cols-auto">
+            <div class="col-12">
+                <h3>Selecciona una Fotografía de la Propiedad y llena los datos</h3>
+            </div>
+            <div class="col-md-12  col-lg-6">
+                <div class="mb-3">
+                  <label for="filename" class="form-label">Fotografía:</label>
+                  <input type="file" class="form-control form-control-sm" name="filename" id="filename" placeholder="Agregar Fotografía" aria-describedby="fileHelpId">
+                  <small id="fileHelpId" class="form-text text-muted">Selecciona un Fotografía JPG, o PNG</small>
+                </div>
+               
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3">
+                  <label for="titulo" class="form-label">Titulo:</label>
+                  <input type="text" class="form-control" name="titulo" id="titulo" aria-describedby="helpId" placeholder="Titulo de la Fotografía">
+                  <small id="helpId" class="form-text text-muted">Ej. Habitación Principal</small>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3">
+                  <label for="descripcion" class="form-label">Descripción</label>
+                  <input type="text" class="form-control" name="descripcion" id="descripcion" aria-describedby="help2" placeholder="Descripción de la Fotografía">
+                  <small id="help2" class="form-text text-muted">Ej. Habitación de 5m x 5m con 2 ventanas.</small>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-3 ">
-                <input type="file" name="file" id="filename" class="form-control form-control-sm"
-                    placeholder="Agregar imagen">
+            <div class="col">
+                <br>
+                    <input type="hidden" name="id_propiedad" value="{{id}}">
+                    <input type="submit"  class="btn btn-primary btn-sm">
+                
             </div>
-            <div class="col-3  ">
-                <input type="hidden" name="id_propiedad" value="{{id}}">
-                <input type="submit" | class="btn btn-primary btn-sm">
-            </div>
-
-
         </div>
 </div>
 </form>
 <div class="container-fluid-md">
 
 
-    <div class="row row-cols-auto">
+    <div class="row row-cols-auto g-2 m-2">
         {% for datos in datos_imagenes%}
 
         <div class="col">
             <div class="card" style="width:18rem;">
-                <a href="{{ url_for('admin.addpic', id = id )}}">
+                <a href="{{ url_for('admin.delpic', id = datos['id'] )}}">
                     <img src="{{ url_for('static',filename='galeria/'+datos['URL'])}}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{id}}</h5>
+                    <h5 class="card-title">{{id}} imagen: {{datos['id']}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted ">Nueva imagen</h6>
                     <p class="card-text">Presione en l aimagen para agregar una nueva imagen a la galeria</p>
 

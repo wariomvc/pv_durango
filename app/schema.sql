@@ -7,10 +7,12 @@ CREATE TABLE "propiedades" (
 	"titulo"	TEXT NOT NULL,
 	"frase"	TEXT NOT NULL,
 	"direccion"	TEXT NOT NULL,
+	"estado" TEXT NOT NULL
 	"documentos"	TEXT,
 	"servicios"	TEXT,
 	"medidas"	TEXT,
 	"construccion"	TEXT,
+	"lugares" TEXT,
 	"latitud"	TEXT,
 	"longitud"	TEXT
 );

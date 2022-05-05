@@ -26,6 +26,9 @@ def get_galeria_by_id(id_propiedad):
     
     return imagenes_propiedad
 
+@bp.route('/delpic')
+def delpic():
+    pass
 
 @bp.route('/')
 def registrar():

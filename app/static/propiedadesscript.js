@@ -1,17 +1,4 @@
 
-// Localización de Ubicación
-let opcionesLocation = {
-  enableHighAccuracy: true,
-  timeout: 6000,
-  maximumAge: 1000
-}
-//navigator.geolocation.getCurrentPosition(localizacion, locationError, opcionesLocation)
-function locationError(err) {
-  alert("Hubo un error ")
-  console.log(err)
-  localizacion()
-}
-
 /* *** funcion locali
 */
 var map = null
