@@ -1,4 +1,4 @@
-var mapa_dinamico = document.querySelector('.mapa');
+/* var mapa_dinamico = document.querySelector('.mapa');
 var mapa_estatico = document.querySelector('.mapa_estatico');
 var contenedor_mapa = document.querySelector('.contenedor_mapa')
 
@@ -39,4 +39,6 @@ $(document).ready(function() {
       $('html, body').animate({ scrollTop: destino.offset().top }, 500);
       return false;
     });
-  });
+  }); */
+
+  

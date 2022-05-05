@@ -1,9 +1,11 @@
 
+import json
 import os
 from pydoc import render_doc
 import re
 
 from flask import Flask, render_template, request
+from importlib_metadata import method_cache
 
 from .dbsql import get_db
 
@@ -50,6 +52,21 @@ def create_app(test_config=None):
         
         return imagenes_propiedad
 
+    @app.route('/getubicaciones', methods=['POST'])
+    def getubicaciones():
+        db = dbsql.get_db()
+        res = db.execute("SELECT * FROM propiedades").fetchall()
+        db.close()
+        resjson = json.dumps([dict(ix) for ix in res])
+        #print(resjson)
+        return resjson
+    @app.route('/getimagenes', methods=['POST'])    
+    def getimagenes():
+        db = get_db()
+        r = db.execute('SELECT * FROM imagenes ').fetchall()
+        imagenes_propiedad = json.dumps([dict(ix) for ix in r])
+        db.close()
+        return imagenes_propiedad
 
     @app.route('/<int:id>/show')
     def showPropiedad(id):

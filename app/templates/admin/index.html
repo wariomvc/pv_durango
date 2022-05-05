@@ -6,23 +6,23 @@
     {% for propiedad in propiedades %}
     <div class="row row-cols-auto border border-2 padding p-2">
         <div class="col-sm-6 col-lg-2 ">
-            <strong>WHQ: </strong> 
+            <strong>WHQ: </strong>
             <a href="{{ url_for('showPropiedad', id=propiedad['id'])}}">{{propiedad['whq']}}</a>
         </div>
         <div class="col-sm-6 col-lg-3"><strong>Proyecto:</strong>
             {{propiedad['nombre']}}
         </div>
-        
         <div class="col-sm-12 col-lg-5"><strong>Dirección</strong>
             {{propiedad['direccion']}}
         </div>
         <div class="col-lg-2 col-sm-12">
-            <a class="btn btn-success btn-sm " href="{{url_for('admin.galeria',id= propiedad['id'])}}" role="button">Agregar Fotografía</a>
+            <a class="btn btn-success btn-sm " href="{{url_for('admin.galeria',id= propiedad['id'])}}"
+                role="button">Agregar Fotografía</a>
         </div>
     </div>
     {% endfor %}
-<div class="container">
-    <a class="btn btn-primary btn-sm mt-3 " href="/admin/registrar" role="button">Nueva Propiedad </a>
-</div>
+    <div class="container">
+        <a class="btn btn-primary btn-sm mt-3 " href="/admin/registrar" role="button">Nueva Propiedad </a>
+    </div>
 </div>
 {% endblock %}

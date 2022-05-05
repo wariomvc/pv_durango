@@ -143,3 +143,4 @@ dist/
 build/
 *.egg-info/
 galeria/
+node_modules/

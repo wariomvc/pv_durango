@@ -1,53 +1,53 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1>Registrar nueva Propiedad</h1>
-<div class="container-fluid ">
+<div class="container-fluid mx-2">
 
     <form action="{{ url_for('admin.nueva_propiedad') }}" method="POST" enctype="multipart/form-data" class="row g-3">
-        <div class="row g-3">
-            <div class="col-1 ">
-                <label for="whq">WHQ:</label><input type="text" name="whq" class="form-control" placeholder="MEX0000">
+        <div class="row g-3 row-cols-auto border-1 border">
+            <div class="col-md-2 col-lg-1">
+                <label for="whq">WHQ:</label><input type="text" name="whq" class="form-control" placeholder="Ej. MEX0000">
 
             </div>
-            <div class="col-2 ">
+            <div class="col-md-2 ">
                 <label>Lugar:</label><input type="text" name="nombre" class="form-control"
                     placeholder="Ej. Torreón Coahuila">
             </div>
-            <div class="col-2 ">
+            <div class="col-md-2 ">
                 <label for="titulo">Titulo:</label><input type="text" name="titulo" class="form-control"
                     placeholder=" Ejemplo: Casa Habitación">
 
             </div>
-            <div class="col-2 ">
+            <div class="col-md-4 ">
                 <label for="titulo">Frase:</label><input type="text" name="frase" class="form-control"
                     placeholder="Ej. Adecuable a sus necesidades">
 
             </div>
-            <div class="col-4 ">
+            <div class="col-md-4 ">
                 <label>Dirección:</label><input type="text" name="direccion" class="form-control"
                     placeholder="Dirección Fisica de la Propiedad">
             </div>
         </div>
-        <div class="row g-4" >
-            <div class="col-3 ">
+        <div class="row g-4 row-cols-auto border border-1 mx-auto border-round-2" >
+            <div class="col-md-2 ">
                 <label>Documentación:</label><textarea name="documentos" class="form-control" rows="4"
                     placeholder="Documentos Disponibles, C/u Separado por ,"></textarea>
             </div>
-            <div class="col-3 ">
+            <div class="col-md-2 ">
                 <label>Servicios:</label><textarea name="servicios" class="form-control" rows="4"
                     placeholder="Escriba por linea, los servicios que cuenta la propiedad"></textarea>
             </div>
-            <div class="col-3 ">
+            <div class="col-md-2 ">
                 <label>Medidas:</label><textarea name="medidas" class="form-control" rows="4"
                     placeholder="Escriba por Linea las medidas de distintar partes de la propiedad"></textarea>
             </div>
-            <div class="col-3 ">
+            <div class="col-md-2 ">
                 <label>Construcción:</label><textarea name="construccion" class="form-control" rows="4"
                     placeholder="Escriba por linea los materiales de construcción"></textarea>
             </div>
         </div>
-        <div class="row g-4">
-            <div class="col-4 ">
+        <div class="row g-3 row-cols-auto">
+            <div class="col ">
 
                 <label>Ubicación:</label><input name="latitud" class="form-control" placeholder="Latitud">
                 <input type="text" name="longitud" placeholder="longitud" class="form-control">

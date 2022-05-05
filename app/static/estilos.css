@@ -1,0 +1,58 @@
+.hdr {
+    background-image: linear-gradient(185deg, #384f5e 0, #1f4459 50%, #003954 100%);
+    height: auto;
+    padding: 10px 10px;
+}
+
+#welcomebox {
+    background-color: #65cae8;
+    width: 100vw;
+    height: 100vh;
+    
+    background-image: radial-gradient(circle at 62.28% 119.64%, #f9ffff 0, #eafffc 7.14%, #d8fff9 14.29%, #c4fff7 21.43%, #adfff5 28.57%, #91fff3 35.71%, #6ffcf2 42.86%, #3cf2f2 50%, #00e8f3 57.14%, #00def6 64.29%, #00d4fa 71.43%, #00cbff 78.57%, #00c3ff 85.71%, #00bbff 92.86%, #00b4ff 100%);
+}
+.fondo2{
+
+    
+    width: 100%;
+    height: 100%;
+    background-image: url('fondo.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: 20% ;
+}
+.fondo-ubicacion{
+    width: 100%;
+    height: 100%;
+}
+
+#recuadro {
+    font-weight: bolder;
+    font-size: larger;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline;
+    position: relative;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: #ffffff00;
+    top: 30%;
+    left: 50%;
+    
+}
+
+.contenedor-mapa{
+    margin: 10px;
+    padding: 10px;
+    border-width: 2px;
+    border-color: gray;
+    border-style: dashed;
+}
+.mapbox-miubicacion{
+    width: 100%;
+    height: 300px;
+    
+}
+
+.popupclass img{
+    width: 150px;
+}

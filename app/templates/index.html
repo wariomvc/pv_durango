@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
-{%  block body %}
-    <div>
-        <a href="miubicacion"> En Mi Ubicación</a>
-        <br>
-        En el Estado de:
+{% block body %}
+<div id="welcomebox" class="contenedor">
+    <div class="fondo2">
+        <div class="contenedor" id="recuadro">
+            <a href="miubicacion" class="btn btn-primary btn-lg"> Propiedades</a>
+            <br>
+            <!-- En el Estado de:
         <form>
             <select>
                 <option selected>Selecciona un Estado:</option>
@@ -12,8 +14,11 @@
                 <option>Jalisco</option>
             </select>
             <input type="submit" style="background-color: steelblue; color: aliceblue;" ></form>
-        </form>
-        
+        </form>    
+        </div> -->
+        </div>
+
     </div>
-    <a href="/admin">Adminstrar Propiedaes</a>
+</div>
+
 {% endblock%}

@@ -19,4 +19,6 @@ CREATE TABLE "imagenes" (
 	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	"id_propiedad"	INTEGER NOT NULL,
 	"url"	TEXT NOT NULL
+	"titulo" TEXT NOT NULL
+	"info" TEXT NULL
 );
