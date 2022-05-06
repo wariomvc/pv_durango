@@ -1,24 +1,18 @@
 {% extends 'base.html' %}
 {% block body %}
+<header>
+    <nav><a name="" id="" class="" href="/" role="button">Inicio</a>
+        <a name="" id="" class="" href="/buscar" role="button">Buscar</a>
+        <a name="" id="" class="" href="/admin" role="button">Administrar</a>
+        <a name="" id="" class="" href="/contacto" role="button">Contacto</a>
+    </nav>
+    <h2>Buscador de Propiedades</h2>
+    <h3>Encuentra la Tuya</h3>
+</header>
+<article>
+    <section class="mapa"><div id='mapbox' class="mapbox-miubicacion"></div></section>
+</article>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 align-center">
-            <h1>Lista de Propiedades</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="contenedor-mapa">
-                <div id='mapbox' class="mapbox-miubicacion"></div>
-                
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 <script src="{{url_for('static',filename='propiedadesscript.js')}}"></script>
 <script>
     

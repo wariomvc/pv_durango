@@ -1,13 +1,69 @@
-{% extends 'base.html' %}
-{% block body %}
-<div id="welcomebox" class="contenedor">
-    <div class="fondo2">
-        <div class="contenedor" id="recuadro">
-            <a href="miubicacion" class="btn btn-primary btn-lg"> Propiedades</a>
-            
-        </div>
+<!doctype html>
+<html lang="en">
 
-    </div>
-</div>
+<head>
+  <title>Hola</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-{% endblock%}
+  <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+
+
+</head>
+
+<body>
+  
+  
+<header>
+    <nav><a name="" id="" class="" href="/" role="button">Inicio</a>
+        <a name="" id="" class="" href="/buscar" role="button">Buscar</a>
+        <a name="" id="" class="" href="/admin" role="button">Administrar</a>
+        <a name="" id="" class="" href="/contacto" role="button">Contacto</a>
+    </nav>
+    <h1>Inmuebles en Venta</h1>
+    <h3>Encuentra la Tuya</h3>
+
+
+    <a name="buscar" id="buscar" class="btn-buscar btn btn-light btn-sm btn-outline-dark" href="miubicacion"
+        role="button">Buscar</a>
+</header>
+<article>
+    <section>
+        <h5>Localiza</h5>
+        En este sitio puedes buscar propiedades en venta en todo el territorio de México.
+        Buscar por estados la más cercana a tí.
+        <h5>Conoce</h5> Cada propiedad cuenta una descripción de servicios, documentos y más detalles del inmueble.
+        Para que puedas elegir la más te guste.
+        <h5>Galería</h5>
+        Encontrarás fotografías de los interiores y exteriores, habitaciones y cada sección del inmueble.
+    </section>
+</article>
+
+{% for message in get_flashed_messages() %}
+  <div class="flash">{{ message }}</div>
+  {% endfor %}
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
