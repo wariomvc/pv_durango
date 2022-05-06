@@ -1,22 +1,17 @@
-from distutils.command.config import config
 import os
-from asyncio.windows_events import NULL
-import errno
-import functools
-from stat import FILE_ATTRIBUTE_NORMAL
 from  werkzeug.utils import secure_filename
 from os.path import join, dirname, realpath
 
 from flask import (
     Blueprint, Flask, flash, g, redirect, render_template, request, session, url_for
 )
-from werkzeug.security import check_password_hash, generate_password_hash
+#from werkzeug.security import check_password_hash, generate_password_hash
 
 
 from .dbsql import get_db
 
 
-bp = Blueprint('admin', __name__, url_prefix='/admin')
+bpadmin = Blueprint('admin', __name__, url_prefix='/admin')
 upload_folder = join(dirname(realpath(__file__)), "static\galeria")
 extensiones_permitidas = ['jpeg','jpg','png']
 
@@ -26,11 +21,11 @@ def get_galeria_by_id(id_propiedad):
     
     return imagenes_propiedad
 
-@bp.route('/delpic')
+@bpadmin.route('/delpic')
 def delpic():
     pass
 
-@bp.route('/')
+@bpadmin.route('/')
 def registrar():
     db = get_db()
     propiedades = db.execute('SELECT id,whq, nombre, titulo, direccion FROM propiedades;').fetchall()
@@ -41,7 +36,7 @@ def registrar():
 def check_extensiones(filename=''):
     return '.' in filename and filename.rsplit('.')[1] in extensiones_permitidas
 
-@bp.route('/galeria/<id>',methods=('GET','POST'))
+@bpadmin.route('/galeria/<id>',methods=('GET','POST'))
 def galeria(id):
     imagenes_propiedad = get_galeria_by_id(id)
     if request.method == 'POST':
@@ -67,7 +62,7 @@ def galeria(id):
         else:
             return render_template('admin/galeria.html', id=id, datos_imagenes=[])
 
-@bp.route('/addpic',methods=('GET','POST'))
+@bpadmin.route('/addpic',methods=('GET','POST'))
 def addpic():
     request.form['id']
     if request.method == 'POST':
@@ -80,7 +75,7 @@ def addpic():
             flash("Tipo de Archivo no soportado")
     return render_template('admin/galeria.html')
 
-@bp.route('/registrar', methods=('GET','POST'))
+@bpadmin.route('/registrar', methods=('GET','POST'))
 def nueva_propiedad():
     if request.method == 'POST':
         whq = request.form['whq']

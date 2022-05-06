@@ -1,16 +1,15 @@
-from .admin import *
-from .dbsql import *
+from app.dbsql import *
+from app.admin import bpadmin
 import json
 import os
-from pydoc import render_doc
-import re
+
+
 
 from flask import Flask, render_template, request
 #from importlib_metadata import method_cache
 
-from .dbsql import get_db
-app = Flask(__name__, instance_relative_config=True)
-
+from app.dbsql import get_db
+from app import app
 
 # a simple page that says hello
 @app.route('/')
@@ -61,7 +60,7 @@ init_app(app)
 
 # create and configure the app
 
-app.register_blueprint(bp)
+app.register_blueprint(bpadmin)
 
 
 
