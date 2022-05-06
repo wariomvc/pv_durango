@@ -46,7 +46,8 @@ def galeria(id):
     imagenes_propiedad = get_galeria_by_id(id)
     if request.method == 'POST':
         id_propiedad = request.form['id_propiedad']
-        file = request.files['file']
+        print(request.files)
+        file = request.files['filename']
         if check_extensiones(filename=file.filename):         
             filename = secure_filename(file.filename)
             file.save(os.path.join(upload_folder,filename))
