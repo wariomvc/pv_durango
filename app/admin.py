@@ -71,8 +71,10 @@ def addpic():
         file = request.files['file']
         if check_extensiones(filename=file.filename):         
             filename = secure_filename(file.filename)
+            print("Carpeta de Subida: "+upload_folder+" Nombre de Archivo: "+filename)
             file.save(os.path.join(upload_folder,filename))
-            print(upload_folder)
+
+
         else:
             flash("Tipo de Archivo no soportado")
     return render_template('admin/galeria.html')
