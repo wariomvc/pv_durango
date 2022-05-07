@@ -41,6 +41,8 @@ def galeria(id):
     imagenes_propiedad = get_galeria_by_id(id)
     if request.method == 'POST':
         id_propiedad = request.form['id_propiedad']
+        titulo = request.form['titulo']
+        info = request.form['descripcion']
         print(request.files)
         file = request.files['filename']
         if check_extensiones(filename=file.filename):         
@@ -48,7 +50,7 @@ def galeria(id):
             file.save(os.path.join(upload_folder,filename))
             print(upload_folder)
             db = get_db()
-            db.execute("INSERT INTO imagenes (id_propiedad, URL) VALUES(?,?)",(id_propiedad,filename))
+            db.execute("INSERT INTO imagenes (id_propiedad, URL,titulo, info) VALUES(?,?,?,?)",(id_propiedad,filename,titulo,info))
             db.commit() 
             
             print("Base de Datos Cerrada")
@@ -83,21 +85,25 @@ def nueva_propiedad():
         titulo = request.form['titulo']
         frase = request.form['frase']
         direccion = request.form['direccion']
+        estado = request.form['estado']
         doctmp = request.form['documentos']
         servtmp = request.form['servicios']
         medidastmp = request.form['medidas']
         consttmp = request.form['construccion']
+        lugares = request.form['lugares']
         latitud = request.form['latitud']
         longitud = request.form['longitud']
         db = get_db()
         try:
             db.execute("""INSERT INTO 
-                    propiedades (whq,nombre,titulo,frase,direccion,documentos,servicios,medidas,construccion,latitud,longitud)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?) """, 
-                    (whq,nombre,titulo,frase,direccion, doctmp,servtmp,medidastmp,consttmp,latitud,longitud))
+                    propiedades
+                    (whq,nombre,titulo,frase,direccion,estado,documentos,servicios,medidas,construccion,lugares,latitud,longitud)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) """, 
+                    (whq,nombre,titulo,frase,direccion,estado, doctmp,servtmp,medidastmp,consttmp,lugares,latitud,longitud))
             db.commit()
-        except db.IntegrityError:
-            errores = "Hubo un error"
+        except db.IntegrityError as err:
+            errores = "Error: "+ str(err)
+            
         else:
             errores ="Agregado Exitosamente"
         flash(errores)
