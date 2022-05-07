@@ -43,12 +43,13 @@ def galeria(id):
         id_propiedad = request.form['id_propiedad']
         titulo = request.form['titulo']
         info = request.form['descripcion']
-        print(request.files)
+        #print(request.files)
         file = request.files['filename']
         if check_extensiones(filename=file.filename):         
             filename = secure_filename(file.filename)
             file.save(os.path.join(upload_folder,filename))
             print("Carpeta de Subida: "+upload_folder+" Nombre de Archivo: "+filename)
+            
             db = get_db()
             db.execute("INSERT INTO imagenes (id_propiedad, URL,titulo, info) VALUES(?,?,?,?)",(id_propiedad,filename,titulo,info))
             db.commit() 
