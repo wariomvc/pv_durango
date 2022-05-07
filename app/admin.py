@@ -12,7 +12,7 @@ from .dbsql import get_db
 
 
 bpadmin = Blueprint('admin', __name__, url_prefix='/admin')
-upload_folder = join(dirname(realpath(__file__)), "static\galeria")
+upload_folder = join(dirname(realpath(__file__)), "static/galeria")
 extensiones_permitidas = ['jpeg','jpg','png']
 
 def get_galeria_by_id(id_propiedad):
