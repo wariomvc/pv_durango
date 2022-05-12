@@ -12,6 +12,7 @@ function localizacion() {
     zoom: 14,
   });
   map.addControl(new mapboxgl.NavigationControl());
+  console.log(map)
 
 }
 
@@ -27,7 +28,7 @@ function setMarcadoresPopups(propiedades, imagenes) {
       url_pic = imagenes[i].url
     }
     else { url_pic = "" }
-    let popup = new mapboxgl.Popup({
+    var popup = new mapboxgl.Popup({
       offset: 25,
       closeButton: false,
       closeOnMove: true,
@@ -36,16 +37,26 @@ function setMarcadoresPopups(propiedades, imagenes) {
       .setHTML("<strong>" + prop['whq'] + "</strong><br>" + prop['nombre'] + "<br>" + prop['titulo'] + ": " + prop['frase'] +
         "<img src='./static/galeria/" + url_pic + "'></img>");
     //console.log("i: "+prop['id']);
+    
+    
     i = imagenes.findIndex((e) => prop['id'] == e['id_propiedad'])
     console.log("i= " + i)
     if (i != -1) {
-      console.log("Imegan:" + imagenes[i].url);
+      //console.log("Imagen:" + imagenes[i].url);
     }
-
-
-    const x = new mapboxgl.Marker().setLngLat([parseFloat(prop['longitud']), parseFloat(prop['latitud'])]).setPopup(popup).addTo(map)
-
-    marcadores.push(x)
+    console.log(prop['id']);
+    const xMarker = new mapboxgl.Marker().setLngLat([parseFloat(prop['longitud']), parseFloat(prop['latitud'])]).setPopup(popup).addTo(map);
+    let info = xMarker.getElement();
+    info.addEventListener('click',()=>{
+      let t = document.getElementById('infoPropiedad');
+      infoPropiedad = getInfoPropiedaById(prop['id']);
+      console.log(infoPropiedad);
+      t.innerHTML= "<h3>"+infoPropiedad[0]['titulo'] + "</h3> "+infoPropiedad[0]['nombre']+"<br><br><h4>"+infoPropiedad[0]['frase']+"</h4>"+
+      "<br><strong>Servicios: </strong>"+infoPropiedad[0]['servicios']+"<br>"+
+      infoPropiedad[0]['lugares']+
+      "<br><br><a href='./"+prop['id']+"/show'>más información...</a>"
+    })
+    marcadores.push(xMarker)
     coordenadas.push([parseFloat(prop['longitud']), parseFloat(prop['latitud'])])
   });
 
@@ -64,6 +75,16 @@ function setMarcadoresPopups(propiedades, imagenes) {
 
 }
 
+function getInfoPropiedaById(id){
+  let res = $.ajax({
+    url: "/getinfobyid/"+id,
+    type: "POST",
+    async: false,
+    contentType: "application/json"
+  })
+  infoPropiedad = JSON.parse(res.responseText);
+  return infoPropiedad;
+}
 
 
 
@@ -82,7 +103,8 @@ function getUbicacionesSuccess(resultado) {
 }
 
 
-window.onload = function () {
+window.onload = function  () {
+  console.log("Windows.load cargado");
   json_ubicaciones_propiedades = $.ajax({
     url: "/getubicaciones",
     type: "POST",
@@ -100,6 +122,7 @@ window.onload = function () {
   objPropiedades = JSON.parse(json_ubicaciones_propiedades.responseText);
   localizacion();
   setMarcadoresPopups(objPropiedades, objImagenes)
+
 
 
 

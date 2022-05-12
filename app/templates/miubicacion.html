@@ -10,11 +10,23 @@
     <h3>Encuentra la Tuya</h3>
 </header>
 <article>
-    <section class="mapa"><div id='mapbox' class="mapbox-miubicacion"></div></section>
+    <div class="row row-cols-auto">
+        <div class="col-6">
+            <section class="mapa">
+                <div id='mapbox' class="mapbox-miubicacion"></div>
+            </section>
+        </div>
+        <div class="col-6">
+            <section class="info">
+                <h3>Presiona sobre una propiedad para ver su información</h3>>
+            </section>
+        </div>
+    </div>
+
 </article>
 
 <script src="{{url_for('static',filename='propiedadesscript.js')}}"></script>
 <script>
-    
+
 </script>
 {% endblock %}}

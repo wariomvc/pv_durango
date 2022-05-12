@@ -1,3 +1,5 @@
+from asyncio.windows_events import NULL
+from distutils.log import info
 from app.dbsql import *
 from app.admin import bpadmin
 import json
@@ -34,6 +36,15 @@ def getubicaciones():
     resjson = json.dumps([dict(ix) for ix in res])
     # print(resjson)
     return resjson
+
+@app.route('/getinfobyid/<int:id>', methods=['POST'])
+def getinfobyid(id):
+    print(id)
+    db = get_db()
+    r = db.execute("SELECT * FROM propiedades WHERE id = ?",(id,)).fetchall()
+    inforpropiedad = json.dumps([dict(ix) for ix in r])
+    db.close()
+    return inforpropiedad
 
 @app.route('/getimagenes', methods=['POST'])
 def getimagenes():
