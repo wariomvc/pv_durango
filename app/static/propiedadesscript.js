@@ -70,7 +70,7 @@ function setMarcadoresPopups(propiedades, imagenes) {
 
   console.log(bounds)
   map.fitBounds(bounds, {
-    padding: 15
+    padding: {top:30, bottom: 30, left: 30, rigth: 30}
   })
 
 }
