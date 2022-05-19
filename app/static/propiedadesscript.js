@@ -29,7 +29,7 @@ function setMarcadoresPopups(propiedades, imagenes) {
     }
     else { url_pic = "" }
     var popup = new mapboxgl.Popup({
-      offset: 25,
+      offset: 10,
       closeButton: false,
       closeOnMove: true,
       className: "popupclass"
